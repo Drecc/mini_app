@@ -1,0 +1,20 @@
+source_set("mini_app_application_lib") {
+  sources = [
+    "browser/application_service.cc",
+    "browser/application_service.h",
+    "browser/application_system.cc",
+    "browser/application_system.h",
+    "browser/application.cc",
+    "browser/application.h",
+  ]
+  deps = [
+    "//base",
+    "//crypto",
+    "//ipc",
+    "//mini_app/core/application/common:mini_app_application_common_lib",
+    "//third_party/libxml",
+    "//third_party/zlib",
+    "//ui/base",
+    "//url",
+  ]
+}
