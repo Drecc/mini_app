@@ -1,0 +1,24 @@
+source_set("app_window_lib") {
+    sources = [
+        "app_delegate.h",
+        "app_web_contents_helper.cc",
+        "app_web_contents_helper.h",
+        "app_window.cc",
+        "app_window.h",
+        "app_window_client.cc",
+        "app_window_client.h",
+        "app_window_contents.cc",
+        "app_window_contents.h",
+        "native_app_window.h",
+        "size_constraints.cc",
+        "size_constraints.h",
+        "draggable_region.cc",
+        "draggable_region.h",
+    ]
+    deps = [
+        "//base",
+        "//content/public/browser",
+        "//ui/base",
+        "//ui/gfx",
+    ]
+}

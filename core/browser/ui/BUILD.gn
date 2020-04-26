@@ -1,0 +1,41 @@
+
+static_library("mini_app_ui") {
+  sources = [
+    "app_window_easy_resize_window_targeter.cc",
+    "app_window_easy_resize_window_targeter.h",
+    "app_window_frame_view.cc",
+    "app_window_frame_view.h",
+    "chrome_native_app_window_views_aura.cc",
+    "chrome_native_app_window_views_aura.h",
+    "chrome_native_app_window_views.cc",
+    "chrome_native_app_window_views.h",
+    "mini_app_view_delegate.cc",
+    "mini_app_view_delegate.h",
+    "native_app_window_views.cc",
+    "native_app_window_views.h",
+    "shaped_app_window_targeter.cc",
+    "shaped_app_window_targeter.h",
+    "ui_env_controller_aura.cc",
+    "ui_env_controller_aura.h",
+    "ui_env_controller.cc",
+    "ui_env_controller.h",
+  ]
+
+  deps = [
+    "//base",
+    "//cc/paint",
+    "//chrome/app/theme:theme_resources",
+    "//components/favicon/content",
+    "//content/public/browser",
+    "//mini_app/core/browser/app_window:app_window_lib",
+    "//skia",
+    "//ui/base",
+    "//ui/gfx",
+    "//ui/platform_window",
+    "//ui/strings",
+    "//ui/views",
+    "//ui/views/controls/webview",
+    "//ui/wm",
+    "//ui/wm/public",
+  ]
+}
