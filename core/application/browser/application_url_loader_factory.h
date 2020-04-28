@@ -29,9 +29,7 @@ namespace application {
 
 class ApplicationUrlLoaderFactory : public network::mojom::URLLoaderFactory {
 public:
-    explicit ApplicationUrlLoaderFactory(
-        content::BrowserContext* browser_context,
-        content::WebContents* web_contents);
+    explicit ApplicationUrlLoaderFactory(content::BrowserContext* browser_context);
     ~ApplicationUrlLoaderFactory() override;
 
     void CreateLoaderAndStart(

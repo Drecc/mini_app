@@ -1,11 +1,12 @@
 #include "mini_app/core/browser/mini_app_content_browser_client.h"
 
 #include "base/logging.h"
+#include "content/public/browser/render_process_host.h"
+#include "content/public/browser/web_contents.h"
 #include "mini_app/core/application/browser/application_protocols.h"
 #include "mini_app/core/application/common/constants.h"
-#include "mini_app/core/browser/mini_app_browser_main_parts.h"
-#include "content/public/browser/web_contents.h"
 #include "mini_app/core/application/common/constants.h"
+#include "mini_app/core/browser/mini_app_browser_main_parts.h"
 
 namespace mini_app {
 
@@ -37,7 +38,20 @@ void MiniAppContentBrowserClient::RegisterNonNetworkNavigationURLLoaderFactories
   factories->emplace(
       application::kApplicationScheme,
       application::CreateNonNetworkNavigationURLLoaderFactory(
-          web_contents->GetBrowserContext(),  web_contents));
+          web_contents->GetBrowserContext()));
+}
+
+void MiniAppContentBrowserClient::RegisterNonNetworkSubresourceURLLoaderFactories(
+    int render_process_id,
+    int render_frame_id,
+    content::ContentBrowserClient::NonNetworkURLLoaderFactoryMap* factories) {
+    content::RenderProcessHost* process_host =
+        content::RenderProcessHost::FromID(render_process_id);
+    content::BrowserContext* browser_context = process_host->GetBrowserContext();
+    factories->emplace(
+        application::kApplicationScheme,
+        application::CreateNonNetworkNavigationURLLoaderFactory(
+            browser_context));            
 }
 
 }   //namespace mini_app

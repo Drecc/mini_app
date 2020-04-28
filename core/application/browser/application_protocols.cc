@@ -11,9 +11,8 @@ namespace application {
 
 std::unique_ptr<network::mojom::URLLoaderFactory>
 CreateNonNetworkNavigationURLLoaderFactory(
-    content::BrowserContext* browser_context,
-    content::WebContents* web_contents) {
-    return std::make_unique<ApplicationUrlLoaderFactory>(browser_context, web_contents);
+    content::BrowserContext* browser_context) {
+    return std::make_unique<ApplicationUrlLoaderFactory>(browser_context);
 }
 
 }
