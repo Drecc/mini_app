@@ -6,6 +6,10 @@ source_set("mini_app_application_lib") {
     "browser/application_system.h",
     "browser/application.cc",
     "browser/application.h",
+    "browser/application_protocols.cc",
+    "browser/application_protocols.h",
+    "browser/application_url_loader_factory.cc",
+    "browser/application_url_loader_factory.h",
   ]
   deps = [
     "//base",

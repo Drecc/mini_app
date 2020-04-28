@@ -41,7 +41,7 @@ class Application : public app_window::AppWindow::Observer {
   };
 
   void Terminate();
-
+  bool Init();
   const std::vector<app_window::AppWindow*>& runtimes() const { return windows_; }
 
   std::string id() const { return data_->ID(); }

@@ -19,6 +19,9 @@ public:
       const content::MainFunctionParams& parameters) override;
     void GetAdditionalAllowedSchemesForFileSystem(
       std::vector<std::string>* additional_schemes) override;
+    void RegisterNonNetworkNavigationURLLoaderFactories(
+      int frame_tree_node_id,
+      content::ContentBrowserClient::NonNetworkURLLoaderFactoryMap* factories) override;
 
 private:
 
