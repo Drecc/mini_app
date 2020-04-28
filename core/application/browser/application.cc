@@ -214,11 +214,16 @@ bool Application::Launch() {
   params.window_title = data_->Name();
 
   window_show_params_ = params;
+
+  return true;
+}
+
+bool Application::Init() {
+  GURL url = GetStartURL(data_->manifest_type());
+  CHECK(windows_.size() > 0);
   LOG(INFO) << "load url " << url;
-  window->Init(url, new app_window::AppWindowContents(window), params);
-
-  window->Show(app_window::AppWindow::ShowType::SHOW_ACTIVE);
-
+  windows_[0]->Init(url, new app_window::AppWindowContents(windows_[0]), window_show_params_);
+  windows_[0]->Show(app_window::AppWindow::ShowType::SHOW_ACTIVE);
   return true;
 }
 

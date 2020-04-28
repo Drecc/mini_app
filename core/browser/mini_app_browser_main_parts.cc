@@ -80,7 +80,7 @@ void MiniAppBrowserMainParts::PreMainMessageLoopRun() {
 
     startup_url_ = GetURLFromCommandLine(*command_line);
     run_default_message_loop_ = MiniAppController::GetInstance()->Launch(startup_url_);
-    MiniAppController::GetInstance()->Launch(GURL("https://baidu.com"));
+    // MiniAppController::GetInstance()->Launch(GURL("https://baidu.com"));
 
     if (parameters_.ui_task) {
         std::move(*parameters_.ui_task).Run();

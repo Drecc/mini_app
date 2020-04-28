@@ -13,10 +13,6 @@
 #include "mini_app/core/application/common/application_manifest_constants.h"
 #include "mini_app/core/application/common/application_file_util.h"
 #include "mini_app/core/application/common/id_util.h"
-// #include "mini_app/core/runtime/browser/runtime.h"
-// #include "mini_app/runtime/browser/xwalk_browser_context.h"
-// #include "mini_app/runtime/browser/xwalk_runner.h"
-// #include "mini_app/runtime/common/xwalk_paths.h"
 
 #if defined(OS_WIN)
 #include <shobjidl.h>
@@ -26,13 +22,21 @@ namespace mini_app {
 
 namespace application {
 
+ApplicationService* g_application_service = nullptr;
+
 ApplicationService::ApplicationService(MiniAppBrowserContext* browser_context)
   : browser_context_(browser_context) {
+  CHECK(!g_application_service);
+  g_application_service = this;
 }
 
 std::unique_ptr<ApplicationService> ApplicationService::Create(
     MiniAppBrowserContext* browser_context) {
   return std::unique_ptr<ApplicationService>(new ApplicationService(browser_context));
+}
+
+ApplicationService* ApplicationService::GetInstance() {
+  return g_application_service;
 }
 
 ApplicationService::~ApplicationService() {
@@ -50,6 +54,7 @@ Application* ApplicationService::Launch(
 
   Application* application = Application::Create(application_data,
     browser_context_).release();
+  
   auto app_iter =
       applications_.insert(applications_.end(), application);
 
@@ -68,6 +73,8 @@ Application* ApplicationService::Launch(
   for(Observer& ob : observers_) {
     ob.DidLaunchApplication(application);
   }
+
+  application->Init();
 
   return application;
 }

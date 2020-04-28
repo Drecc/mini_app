@@ -37,6 +37,7 @@ class ApplicationService : public Application::Observer {
 
   static std::unique_ptr<ApplicationService> Create(
     MiniAppBrowserContext* browser_context);
+  static ApplicationService* GetInstance();
 
   // Launch an unpacked application using path to the manifest file
   // of an unpacked application.
