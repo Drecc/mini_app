@@ -21,8 +21,7 @@ namespace mini_app {
 namespace application {
 
 
-ApplicationUrlLoaderFactory::ApplicationUrlLoaderFactory(content::BrowserContext* browser_context, content::WebContents* web_contents)
-     {
+ApplicationUrlLoaderFactory::ApplicationUrlLoaderFactory(content::BrowserContext* browser_context) {
 
 }
 
@@ -39,6 +38,7 @@ void ApplicationUrlLoaderFactory::CreateLoaderAndStart(
         mojo::PendingRemote<::network::mojom::URLLoaderClient> client, 
         const ::net::MutableNetworkTrafficAnnotationTag& traffic_annotation) {
     Application* app = ApplicationService::GetInstance()->GetApplicationByID(request.url.host());
+    LOG(ERROR) << "=====ApplicationUrlLoaderFactory::CreateLoaderAndStart==== " << request.url;
     if(app) {
         base::FilePath relative_path =
                 ApplicationURLToRelativeFilePath(request.url);
