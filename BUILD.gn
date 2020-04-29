@@ -1,7 +1,5 @@
 group("mini_app") {
-    if(is_linux) {
-        deps = [
-            "//mini_app/core:mini_app_exe"
-        ]
-    }
+    deps = [
+        "//mini_app/core:mini_app_exe"
+    ]
 }
