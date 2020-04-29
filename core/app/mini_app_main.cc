@@ -6,7 +6,9 @@
 #include "content/public/app/sandbox_helper_win.h"
 #include "sandbox/win/src/sandbox_types.h"
 
-int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, wchar_t*, int) {
+// int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, wchar_t*, int) {
+int main() {
+    HINSTANCE instance = GetModuleHandle(NULL);
     mini_app::MiniAppMainDelegate delegate;
     content::ContentMainParams params(&delegate);
     sandbox::SandboxInterfaceInfo sandbox_info = {0};
