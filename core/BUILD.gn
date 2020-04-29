@@ -9,6 +9,13 @@ executable("mini_app_exe") {
     deps = [
         ":mini_app_library",
     ]
+    if (is_win) {
+        deps += [
+            "//sandbox",
+        ]
+        configs -= [ "//build/config/win:console" ]
+        configs += [ "//build/config/win:windowed" ]
+    }
 }
 
 source_set("mini_app_library") {

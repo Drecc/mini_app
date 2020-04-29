@@ -8,7 +8,7 @@
 #include "content/public/browser/web_contents.h"
 #include "mini_app/core/application/browser/application_service.h"
 #include "mini_app/core/application/common/application_file_util.h"
-#include "mini_app/core/common/mini_app_scoped_allow_blocking.h"
+// #include "mini_app/core/common/mini_app_scoped_allow_blocking.h"
 #include "net/base/filename_util.h"
 #include "net/base/mime_util.h"
 #include "net/base/net_errors.h"
