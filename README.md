@@ -1,6 +1,7 @@
 # todo list
 1. 完成对自定义app scheme的处理
 2. 完成第一个对自定义js api的添加
+3. 引入chrome对path的管理
 
 # mini_app
 一个简单的chromium demo
