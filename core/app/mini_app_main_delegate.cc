@@ -4,6 +4,7 @@
 #include "base/path_service.h"
 #include "mini_app/core/browser/mini_app_content_browser_client.h"
 #include "mini_app/core/common/mini_app_content_client.h"
+#include "mini_app/core/renderer/mini_app_content_renderer_client.h"
 #include "ui/base/resource/resource_bundle.h"
 
 namespace mini_app {
@@ -38,7 +39,7 @@ int MiniAppMainDelegate::RunProcess(const std::string& process_type, const conte
 
 void MiniAppMainDelegate::InitializeResourceBundle() {
     base::FilePath pak_file;
-    bool r = base::PathService::Get(base::DIR_ASSETS, &pak_file);
+    bool r = base::PathService::Get(base::DIR_MODULE, &pak_file);
     CHECK(r) << "pak_file miss";
     pak_file = pak_file.Append(FILE_PATH_LITERAL("mini_app.pak"));
     ui::ResourceBundle::InitSharedInstanceWithPakPath(pak_file);
@@ -47,12 +48,15 @@ void MiniAppMainDelegate::InitializeResourceBundle() {
 content::ContentBrowserClient* MiniAppMainDelegate::CreateContentBrowserClient() {
     return new MiniAppContentBrowserClient();
 }
+
 content::ContentGpuClient* MiniAppMainDelegate::CreateContentGpuClient() {
     return content::ContentMainDelegate::CreateContentGpuClient();
 }
+
 content::ContentRendererClient* MiniAppMainDelegate::CreateContentRendererClient() {
-    return content::ContentMainDelegate::CreateContentRendererClient();
+    return new MiniAppContentRendererClient();
 }
+
 content::ContentUtilityClient* MiniAppMainDelegate::CreateContentUtilityClient() {
     return content::ContentMainDelegate::CreateContentUtilityClient();    
 }

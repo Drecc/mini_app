@@ -32,6 +32,10 @@ source_set("mini_app_library") {
         "browser/mini_app_window_delegate.h",
         "common/mini_app_content_client.cc",
         "common/mini_app_content_client.h",
+        "renderer/mini_app_content_renderer_client.cc",
+        "renderer/mini_app_content_renderer_client.h",
+        "renderer/mini_app_render_frame_observer.cc",
+        "renderer/mini_app_render_frame_observer.h",
     ]
     deps = [
         ":mini_pak",
@@ -46,6 +50,7 @@ source_set("mini_app_library") {
         "//mini_app/core/application:mini_app_application_lib",
         "//mini_app/core/browser/app_window:app_window_lib",
         "//mini_app/core/browser/ui:mini_app_ui",
+        "//gin"
     ]
 }
 
