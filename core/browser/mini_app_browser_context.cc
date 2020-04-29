@@ -1,11 +1,19 @@
 #include "mini_app/core/browser/mini_app_browser_context.h"
 
 #include "base/environment.h"
+#include "base/files/file_path.h"
+#include "base/files/file_util.h"
+#include "base/files/file.h"
 #include "base/logging.h"
-#include "base/nix/xdg_util.h"
 #include "base/path_service.h"
 #include "content/public/browser/resource_context.h"
 #include "content/public/browser/web_contents.h"
+
+#if defined(OS_LINUX)
+#include "base/nix/xdg_util.h"
+#elif defined(OS_WIN)
+#include "base/base_paths_win.h"
+#endif
 
 namespace mini_app {
 
@@ -43,12 +51,20 @@ MiniAppBrowserContext* MiniAppBrowserContext::FromWebContents(
 }
 
 void MiniAppBrowserContext::InitPath() {
+#if defined(OS_LINUX)
     std::unique_ptr<base::Environment> env(base::Environment::Create());
     base::FilePath config_dir(
         base::nix::GetXDGDirectory(env.get(),
                                    base::nix::kXdgConfigHomeEnvVar,
                                    base::nix::kDotConfigDir));
     path_ = config_dir.Append("mini_app");
+#elif defined(OS_WIN)
+    CHECK(base::PathService::Get(base::DIR_LOCAL_APP_DATA, &path_));
+    path_ = path_.Append(std::wstring(L"mini_app"));
+#endif
+    if(!base::PathExists(path_)) {
+        base::CreateDirectory(path_);
+    }
     content::BrowserContext::Initialize(this, path_);
 }
 
