@@ -15,16 +15,15 @@
 #include <vector>
 
 #include "base/files/file_path.h"
-// #include "base/memory/linked_ptr.h"
 #include "base/memory/ref_counted.h"
 #include "base/strings/string_util.h"
 #include "base/synchronization/lock.h"
 #include "base/threading/thread_checker.h"
+#include "mini_app/core/application/common/manifest.h"
+#include "mini_app/core/application/common/package/package.h"
+#include "mini_app/core/application/common/permission_types.h"
 #include "ui/gfx/geometry/rect.h"
 #include "url/gurl.h"
-#include "mini_app/core/application/common/manifest.h"
-#include "mini_app/core/application/common/permission_types.h"
-#include "mini_app/core/application/common/package/package.h"
 
 #if defined(OS_WIN)
 #define strcasecmp _stricmp
