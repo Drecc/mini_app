@@ -1,1 +1,1 @@
-LOG("woshijs");
+requireNative("woshijs");
