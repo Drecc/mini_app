@@ -13,8 +13,8 @@ executable("mini_app_exe") {
         deps += [
             "//sandbox",
         ]
-        configs -= [ "//build/config/win:console" ]
-        configs += [ "//build/config/win:windowed" ]
+        # configs += [ "//build/config/win:console" ]
+        # configs += [ "//build/config/win:windowed" ]
     }
 }
 
