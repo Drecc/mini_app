@@ -1,0 +1,16 @@
+
+
+
+executable("frame_buffer_test_demo") {
+    sources = [
+        "main.cc",
+
+        "output_framebuffer.cc",
+        "output_framebuffer.h",
+    ]
+
+    deps = [
+        "//base",
+        "//skia",
+    ]
+}
