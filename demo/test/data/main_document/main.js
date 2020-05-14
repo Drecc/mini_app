@@ -1,1 +1,4 @@
-requireNative("woshijs");
+test = requireNative("test");
+console.log(test);
+
+test.TestFunction("aaaa");
