@@ -7,7 +7,8 @@ namespace mini_app {
 
 class  MiniAppNativeModule {
 public:
-    virtual v8::Handle<v8::Object> NewInstance() = 0;
+    virtual v8::Local<v8::Object> NewInstance() = 0;
+    virtual std::string Name() = 0;
     virtual ~MiniAppNativeModule() {}
 };
 

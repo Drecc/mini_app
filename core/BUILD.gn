@@ -46,6 +46,8 @@ source_set("mini_app_library") {
         "renderer/mini_app_native_module.h",
         "renderer/mini_app_module_system.cc",
         "renderer/mini_app_module_system.h",
+        "renderer/mini_app_test_native_module.cc",
+        "renderer/mini_app_test_native_module.h",
     ]
     deps = [
         ":mini_pak",
