@@ -53,36 +53,80 @@ bool OutputFrameBuffer::Init(int width, int height) {
     width_ = width;
     height_ = height;
 
-    vinfo_.xoffset = 0;
-    vinfo_.yoffset = 0;
-    vinfo_.bits_per_pixel = 32;
+    // vinfo_.xoffset = 0;
+    // vinfo_.yoffset = 0;
+    // vinfo_.bits_per_pixel = 32;
+    // vinfo_.activate = FB_ACTIVATE_FORCE;
+    // vinfo_.reserved[0] = 0;
+    // vinfo_.reserved[1] = 0;
+    // vinfo_.reserved[2] = 0;
 
-    finfo_.line_length = (__u32) (width_ * 4);
-    screen_size_ = width_ * height_ * 4;
+    // vinfo_.bits_per_pixel = 32;
+    // vinfo_.red.offset = 0;
+    // vinfo_.red.length = 8;
+    // vinfo_.green.offset = 8;
+    // vinfo_.green.length = 8;
+    // vinfo_.blue.offset = 16;
+    // vinfo_.blue.length = 8;
+    // vinfo_.transp.offset = 24;
+    // vinfo_.transp.length = 8;
 
-    // if(vinfo_.activate != FB_ACTIVATE_FORCE) {
-        vinfo_.xres = (__u32) width_;
-        vinfo_.yres = (__u32) height_;
-        /* set fb format ARGB8888, screen size: 1280*720 */
-        if (ioctl(frame_buffer_fd_, FBIOPUT_VSCREENINFO, &vinfo_) < 0) {
-            LOG(ERROR) << "Unable to set variable screeninfo";
-            return false;
-        }
+    // vinfo_.xres = 1200;
+    // vinfo_.xres_virtual = 1200;
+    // vinfo_.yres = 1920;
+    // vinfo_.yres_virtual = 1920;
+    // vinfo_.width = 1200;
+    // vinfo_.height = 1920;
+
+
+
+    // if (ioctl(frame_buffer_fd_, FBIOPUT_VSCREENINFO, &vinfo_) < 0) {
+    //     LOG(ERROR) << "Unable to set variable screeninfo";
+    //     return false;
     // }
 
-    frame_buffer_ = mmap(0, finfo_.smem_len, PROT_READ | PROT_WRITE, MAP_SHARED, frame_buffer_fd_, 0);
+    if (ioctl(frame_buffer_fd_, FBIOGET_VSCREENINFO, &vinfo_) < 0){
+        LOG(ERROR) << "get vscreeninfo information fail";
+        return false;
+
+    }
+    screen_size_ = vinfo_.xres * vinfo_.yres * vinfo_.bits_per_pixel / 8;
+
+    frame_buffer_ = mmap(0, screen_size_, PROT_READ | PROT_WRITE, MAP_SHARED, frame_buffer_fd_, 0);
     if (frame_buffer_ == MAP_FAILED) {
         LOG(ERROR) << "failed to mmap framebuffer";
         return false;
     }
 
-    int bytes_per_pixel = vinfo_.bits_per_pixel >> 3;
 
-    frame_buffer_1_ = (char *) ((unsigned long) frame_buffer_ +
-                             vinfo_.yres * vinfo_.xres * bytes_per_pixel);
-    frame_buffer_2_ = (char *) ((unsigned long) frame_buffer_ +
-                             vinfo_.yres * vinfo_.xres * bytes_per_pixel * 2);
+
     LOG(INFO) << ToString();
+
+    memset(frame_buffer_, 0, screen_size_);
+
+
+    int x = 100;
+    int y = 100;
+    int location = x * (vinfo_.bits_per_pixel / 8) + y  *  finfo_.line_length;
+
+
+    *((char*)frame_buffer_ + location) = 100;  /* 蓝色的色深 */  /*直接赋值来改变屏幕上某点的颜色*/
+    *((char*)frame_buffer_ + location + 1) = 15; /* 绿色的色深*/   
+    *((char*)frame_buffer_ + location + 2) = 200; /* 红色的色深*/   
+    *((char*)frame_buffer_ + location + 3) = 0;  /* 是否透明*/ 
+
+    // SkPaint paint;
+    // paint.setColor(SK_ColorRED);
+    // paint.setStrokeWidth(5);
+
+    // auto* skBitmap = new SkBitmap();
+    // skBitmap->installPixels(SkImageInfo::MakeN32Premul(vinfo_.xres, vinfo_.yres),
+    //                         frame_buffer_, vinfo_.xres * 4);
+    // auto* skCanvas = new SkCanvas(*skBitmap);
+    // // skCanvas->scale(380, 380);
+    // skCanvas->drawCircle(200, 200, 20, paint);
+    // skCanvas->flush();
+
     return true;
 }
 
