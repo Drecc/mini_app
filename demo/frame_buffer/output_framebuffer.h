@@ -27,8 +27,8 @@ public:
 
 private:
     void* frame_buffer_ = nullptr;
-    void* frame_buffer_1_ = nullptr;
-    void* frame_buffer_2_ = nullptr;
+    // void* frame_buffer_1_ = nullptr;
+    // void* frame_buffer_2_ = nullptr;
     int frame_buffer_fd_ = -1;
     int width_ = 0;
     int height_ = 0;
