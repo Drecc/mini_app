@@ -4,7 +4,8 @@
 executable("frame_buffer_test_demo") {
     sources = [
         "main.cc",
-
+        "devices_info.cc",
+        "devices_info.h",
         "output_framebuffer.cc",
         "output_framebuffer.h",
     ]
@@ -12,5 +13,7 @@ executable("frame_buffer_test_demo") {
     deps = [
         "//base",
         "//skia",
+        "//ui/android",
+        "//ui/display",
     ]
 }
