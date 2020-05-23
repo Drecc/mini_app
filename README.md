@@ -1,14 +1,9 @@
-# todo list
-1. 完成对自定义app scheme的处理
-2. 完成第一个对自定义js api的添加
-3. 引入chrome对path的管理
-
-# mini_app
-一个简单的chromium demo
+## mini_app
+一个简单的学习chromium的demo
 
 ## 快速开始
 
-1. 拉取chromium代码,切换到80分支
+1. 拉取chromium代码,切换到80稳定版的分支
 2. 修改.gclient文件，加入以下内容，并执行gclient sync
 
 ```
@@ -35,3 +30,5 @@ is_debug = true
 ninja -C <out_dir> mini_app
 
 ```
+
+## list
