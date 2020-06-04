@@ -12,6 +12,7 @@ MiniAppContentRendererClient::~MiniAppContentRendererClient() {
 }
 
 void MiniAppContentRendererClient::RenderFrameCreated(content::RenderFrame* render_frame) {
+    //它会自己delete自己
     new MiniAppRenderFrameObserver(render_frame);
 }
 
