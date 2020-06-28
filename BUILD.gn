@@ -10,4 +10,9 @@ group("mini_app") {
             "//mini_app/demo/frame_buffer:frame_buffer_test_demo"
         ]
     }
+    if(is_linux) {
+        deps += [
+            "//mini_app/demo/test_in_linux:test_linux"
+        ]
+    }
 }

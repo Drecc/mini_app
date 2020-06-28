@@ -79,6 +79,7 @@ void MiniAppBrowserMainParts::PreMainMessageLoopRun() {
     MiniAppController::GetInstance()->PreMainMessageLoopRun();
 
     startup_url_ = GetURLFromCommandLine(*command_line);
+    LOG(INFO) << "startup url: " << startup_url_;
     run_default_message_loop_ = MiniAppController::GetInstance()->Launch(startup_url_);
     // MiniAppController::GetInstance()->Launch(GURL("https://baidu.com"));
 

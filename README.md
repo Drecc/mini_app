@@ -1,5 +1,5 @@
 ## mini_app
-实现一个最小chromium extension框架
+演示如何使用chromium content api实现一个最小chromium extension app框架
  - 使用aura创建UI
  - 实现自定义js api的注入
  - 移植了微软停止维护的crosswalk的extension机制（其实也与现在chromium的extension机制原理一致，使用它主要是简单）
@@ -12,6 +12,7 @@
 2. 修改.gclient文件，加入以下内容，并执行gclient sync
 
 ```
+//windows平台也行
 target_os = "linux"
 ```
 
