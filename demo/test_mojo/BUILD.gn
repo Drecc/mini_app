@@ -1,0 +1,14 @@
+executable("test_mojo") {
+  sources = [
+    "main.cc",
+  ]
+
+  deps = [
+    "//base",
+    "//mojo/public/cpp/platform",
+    "//mojo/public/cpp/system",
+    "//mojo/public/c/system",
+    "//mojo/core/embedder",
+  ]
+
+}
