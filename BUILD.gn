@@ -5,14 +5,14 @@ group("mini_app") {
             "//mini_app/core:mini_app_exe"
         ]
     }
-    if(is_android) {
+    if(is_linux) {
         deps += [
             "//mini_app/demo/frame_buffer:frame_buffer_test_demo"
         ]
     }
     if(is_linux) {
         deps += [
-            "//mini_app/demo/test_in_linux:test_linux"
+            "//mini_app/demo/test_x11_window:test_x11_window"
         ]
     }
 }

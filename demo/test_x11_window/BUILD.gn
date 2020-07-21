@@ -1,0 +1,11 @@
+executable("test_x11_window") {
+    sources = [
+        "main.cc",
+    ]
+
+    deps = [
+        "//base",
+        "//ui/base/x:x",
+        "//ui/gfx/x:x",
+    ]
+}

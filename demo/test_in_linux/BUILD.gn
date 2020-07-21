@@ -1,9 +1,0 @@
-executable("test_linux") {
-    sources = [
-        "main.cc",
-    ]
-
-    deps = [
-        "//base",
-    ]
-}
