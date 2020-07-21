@@ -8,4 +8,6 @@ executable("test_x11_window") {
         "//ui/base/x:x",
         "//ui/gfx/x:x",
     ]
+    ldflags = [ "-lX11" ]
+
 }

@@ -13,7 +13,7 @@ executable("frame_buffer_test_demo") {
     deps = [
         "//base",
         "//skia",
-        "//ui/android",
+        # "//ui/android",
         "//ui/display",
     ]
 }

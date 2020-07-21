@@ -11,7 +11,6 @@
 #include "ui/gfx/x/x11_switches.h"
 #include "ui/gfx/x/x11_types.h"
 #include "ui/gfx/x/x11_connection.h"
-// #include "ui/base/x/x11_util.h"
 #include "ui/base/x/x11_util_internal.h"
 
 int main(int argc, char** argv)
