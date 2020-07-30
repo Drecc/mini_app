@@ -2,7 +2,7 @@ group("mini_app") {
     deps = []
     if(is_linux || is_win) {
         deps += [
-            "//mini_app/core:mini_app_exe"
+            "//mini_app/core:mini_app_executable"
         ]
     }
     if(is_linux) {

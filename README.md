@@ -1,8 +1,8 @@
 ## mini_app
-演示如何使用chromium content api实现一个最小chromium extension app框架
+演示如何使用content api实现一个最小electron窗口机制
  - 使用aura创建UI
  - 实现自定义js api的注入
- - 移植了微软停止维护的crosswalk的extension机制（其实也与现在chromium的extension机制原理一致，使用它主要是简单）
+ - 移植了微软停止维护的crosswalk的extension机制（其实也与现在chromium的extension机制原理一致）
  - 使用mojo进行browser和render的通信
  - 未引入node，导致没办法使用node丰富的第三方的库，以后有机会再补全
 
@@ -37,4 +37,11 @@ ninja -C <out_dir> mini_app
 
 ```
 
-## list
+## 运行
+```
+1、测试直接打开链接
+<out_dir>/mini_app_executable https://www.baidu.com
+
+2、测试打开指定格式的文件
+<out_dir>/mini_app_executable mini_app/test_data/test_files/manifest.json
+```

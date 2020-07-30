@@ -2,7 +2,7 @@ import("//build/config/ui.gni")
 import("//tools/grit/grit_rule.gni")
 import("//tools/grit/repack.gni")
 
-executable("mini_app_exe") {
+executable("mini_app_executable") {
     sources = [
         "app/mini_app_main.cc",
     ]
