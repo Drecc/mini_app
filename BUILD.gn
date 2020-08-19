@@ -10,6 +10,7 @@ group("mini_app") {
             "//mini_app/demo/frame_buffer:frame_buffer_test_demo",
             "//mini_app/demo/test_x11_window:test_x11_window",
             "//mini_app/demo/test_mojo:test_mojo",
+            "//mini_app/demo/viz_test",
         ]
     }
 }
