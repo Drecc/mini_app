@@ -2,22 +2,10 @@
 #define MINI_APP_DEMO_VIZ_TEST_DEMO_WINDOW_H_
 
 #include "base/macros.h"
+#include "ui/gfx/native_widget_types.h"
 #include "ui/platform_window/platform_window_delegate.h"
 #include "ui/platform_window/platform_window_init_properties.h"
 #include "ui/platform_window/platform_window.h"
-
-#if defined(USE_OZONE)
-#include "ui/ozone/public/ozone_platform.h"
-#endif
-
-#if defined(OS_WIN)
-#include "ui/base/cursor/cursor_loader_win.h"
-#include "ui/platform_window/win/win_window.h"
-#endif
-
-#if defined(USE_X11)
-#include "ui/platform_window/x11/x11_window.h"
-#endif
 
 namespace mini_app {
 

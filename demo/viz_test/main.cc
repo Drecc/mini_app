@@ -3,10 +3,16 @@
 #include "base/logging.h"
 #include "base/message_loop/message_loop.h"
 #include "base/run_loop.h"
-#include "base/threading/thread.h"
 #include "base/task/thread_pool/thread_pool_instance.h"
+#include "base/threading/thread.h"
+#include "mini_app/demo/viz_test/demo_window.h"
 #include "mojo/core/embedder/embedder.h"
 #include "mojo/core/embedder/scoped_ipc_support.h"
+#include "ui/events/platform/platform_event_source.h"
+
+#if defined(USE_X11)
+#include "ui/platform_window/x11/x11_window.h"
+#endif
 
 class MainEnv {
 public:
@@ -38,8 +44,29 @@ private:
   std::unique_ptr<mojo::core::ScopedIPCSupport> ipc_support_;
 };
 
+class InitUI {
+ public:
+  InitUI() {
+#if defined(USE_X11)
+    XInitThreads();
+#endif
+    event_source_ = ui::PlatformEventSource::CreateDefault();
+  }
+
+  ~InitUI() = default;
+
+ private:
+  std::unique_ptr<ui::PlatformEventSource> event_source_;
+
+  DISALLOW_COPY_AND_ASSIGN(InitUI);
+};
+
 int RunMain() {
   base::RunLoop run_loop;
+
+  mini_app::DemoWindow demo_window;
+  demo_window.Create(gfx::Rect(800,600));
+
   run_loop.Run();
   return 0;
 }
@@ -47,6 +74,7 @@ int RunMain() {
 int main(int argc, char** argv) {
   MainEnv env(argc, argv);
   MoJoSupport mojo_support;
+  InitUI init_ui;
   LOG(INFO) << "start viz test demo...";
   return RunMain();
 }

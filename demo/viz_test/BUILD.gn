@@ -4,6 +4,8 @@ executable("viz_test") {
   sources = [
     "main.cc",
 
+    "demo_service.cc",
+    "demo_service.h",
     "demo_window.cc",
     "demo_window.h",
   ]
