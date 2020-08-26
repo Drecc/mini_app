@@ -11,6 +11,7 @@ group("mini_app") {
             "//mini_app/demo/test_x11_window:test_x11_window",
             "//mini_app/demo/test_mojo:test_mojo",
             "//mini_app/demo/viz_test",
+            "//mini_app/demo/network_service_test",
         ]
     }
 }

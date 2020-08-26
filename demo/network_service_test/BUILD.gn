@@ -1,0 +1,20 @@
+import("//build/config/ui.gni")
+
+executable("network_service_test") {
+  sources = [
+    "main.cc",
+
+  ]
+
+  deps = [
+    "//base",
+    "//mojo/core/embedder",
+    "//mojo/public/cpp/bindings",
+    "//mojo/public/cpp/system",
+    "//net",
+    "//services/network:network_service",
+    "//services/network/public/cpp",
+    "//services/network/public/mojom",
+    "//url",
+  ]
+}
