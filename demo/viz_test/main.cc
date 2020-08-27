@@ -6,6 +6,7 @@
 #include "base/task/thread_pool/thread_pool_instance.h"
 #include "base/threading/thread.h"
 #include "mini_app/demo/viz_test/demo_window.h"
+#include "mini_app/demo/viz_test/demo_service.h"
 #include "mojo/core/embedder/embedder.h"
 #include "mojo/core/embedder/scoped_ipc_support.h"
 #include "ui/events/platform/platform_event_source.h"
